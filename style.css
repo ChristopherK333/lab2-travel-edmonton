@@ -101,7 +101,8 @@ body{
 */
 .site-nav a{
     background-color: lightgray;
-    border-radius:rounding(4px);
+    border: 1px solid;
+    border-radius:999px;
     transition:(0.2ms); /*whats transition .2ms do here?*/
     display: inline-block;
     padding: 8px 12px;
@@ -168,6 +169,7 @@ body{
  - slightly different background (very light tint)
 */
 .sidebar{
+    box-shadow: #000;
     padding:(12px);
     border-radius: 8px;
     
@@ -222,7 +224,12 @@ body{
 */
 .tag{
     display: inline-block;
-    padding: small(4px 10px);
+    padding: 4px 10px;
+    margin:4px;
+    border:1px solid;
+    border-radius: 999px;
+    
+
  /* add properties here */
 }
 /* TODO (CSS #8): Video container
@@ -250,6 +257,7 @@ body{
 /* ID selector example: styles ONLY the element with id="featured-video"
  Use this to emphasize the featured section (more specific than .card). */
 #featured-video{
+    border:dashed;
  /* Examples of what you CAN define here:
  - a different border style (solid/dashed)
  - a thicker border width
