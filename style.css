@@ -63,6 +63,7 @@ body{
  color:var(--white);
  padding:20px;
  border-radius: 12px;
+ background-image: URL(https://www.udiscovermusic.com/wp-content/uploads/2020/11/Led-Zeppelin-GettyImages-84848509.jpg)
 }
 /* ---------------------------
  Chapter 4: Descendant selectors
@@ -99,6 +100,19 @@ body{
  - font-weight (normal/bold)
 */
 .site-nav a{
+    background-color: lightgray;
+    border-radius:rounding(4px);
+    transition:(0.2ms); /*whats transition .2ms do here?*/
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration:none;
+    text-align: center;
+    @media screen {
+        max-width: 400px;
+        
+        
+    }
+    
  /* add properties here */
 }
 /* TODO (CSS #2): Hover effect
@@ -109,6 +123,10 @@ body{
  - optionally change underline/border effect instead of background (design choice)
 */
 .site-nav a:hover{
+    background-color: darkgray;
+    
+
+
  /* add properties here */
 }
 /* TODO (CSS #3): Active link highlight
@@ -122,6 +140,9 @@ body{
  Keep it visually consistent with your hover style.
 */
 .site-nav a.active{
+    color:red
+
+
  /* add properties here */
 }
 /* Two-column layout (Flexbox)
@@ -147,6 +168,9 @@ body{
  - slightly different background (very light tint)
 */
 .sidebar{
+    padding:(12px);
+    border-radius: 8px;
+    
  /* add properties here */
 }
 /* TODO (CSS #5): Card styling (Box Model)
@@ -162,6 +186,11 @@ body{
  - box-shadow for depth (subtle; do not overdo)
 */
 .card{
+    background:var(--white);
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
  /* add properties here */
 }
 /* TODO (CSS #6): Meta line
@@ -173,6 +202,9 @@ body{
  - margin-bottom: 6px–12px
 */
 .meta{
+    font-size: 0.9rem;
+    color: (#666);
+    margin-bottom: 6px;
  /* add properties here */
 }
 /* TODO (CSS #7): Tag “pill” styling
@@ -189,6 +221,8 @@ body{
  - text color: var(--primary) or var(--text)
 */
 .tag{
+    display: inline-block;
+    padding: small(4px 10px);
  /* add properties here */
 }
 /* TODO (CSS #8): Video container
@@ -202,6 +236,10 @@ body{
 */
 .video-wrap{
  /* add properties here */
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    overflow:hidden;
+    background: #000;
 }
 .video-wrap iframe{
  width:100%;
@@ -232,6 +270,10 @@ body{
  - slightly muted text color
 */
 .notice{
+    border:dashed(1px dashed #bbb);
+    padding: 10px;
+    border-radius: 8px;
+    background: lightyellow;
  /* add properties here */
 }
 /* Footer
