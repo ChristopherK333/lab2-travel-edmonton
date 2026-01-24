@@ -37,12 +37,24 @@ and “button/card” looks.
  - font-family (Arial, Helvetica, sans-serif)
  - line-height (e.g., 1.4 to 1.8)
  - background and color using variables */
+
+.theme-dark{
+ --bg:#0f172a;
+ --text:#e5e7eb;
+ --primary:#111827;
+ --accent:#38bdf8;
+ --white:#111827;
+ --border:#334155;
+}
+
 body{
  margin:0;
  font-family: Arial, sans-serif;
  background:var(--bg);
  color:var(--text);
  line-height:1.6;
+
+
 }
 /* Centers page content and prevents text from stretching too wide
  You can adjust:
@@ -108,11 +120,11 @@ body{
     padding: 8px 12px;
     text-decoration:none;
     text-align: center;
-    @media screen {
+    /*@media screen {
         max-width: 400px;
         
         
-    }
+    }*/
     
  /* add properties here */
 }
@@ -169,6 +181,7 @@ body{
  - slightly different background (very light tint)
 */
 .sidebar{
+    background:var(--white);
     box-shadow: #000;
     padding:(12px);
     border-radius: 8px;
