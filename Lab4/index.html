@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Café | Quote Dashboard</title>
+
+  <style>
+    /* =========================================================
+       Lab 4 Starter
+       Focus: CSS Grid + Chapter 8 JavaScript
+       ========================================================= */
+
+    :root{
+      /* Complete the color palette (change values only) */
+      --bg:hsl(25, 45%, 64%);
+      --panel:hsla(0, 38%, 89%, 0.596);
+      --text:black;
+      --muted:rgba(0, 0, 0, 0.74);
+      --border:black;
+      --accent:rgb(92, 1, 1);
+      --radius: 16px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a{ color: var(--accent); }
+
+    .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    /* Mobile-first: stacked full width */
+    .container > *{ grid-column: 1 / -1; }
+
+    /* Complete desktop grid placement here grid column syntax is start/end*/
+    @media (min-width: 768px){
+        .head{
+            grid-column: 1/13 ;
+        }
+        .nav{
+            grid-column: 1/3;
+            grid-row: 2 / 4;
+         
+        }
+        .content{
+            grid-column: 3/11;
+            grid-row: 2 / 4;
+        }
+        .sidebar{
+            grid-column: 11/13;
+            grid-row: 2;
+        }
+        .ads{
+            grid-column: 11/13;
+            grid-row: 3;
+        }
+        .footer{
+            grid-column: 1/13;
+        }
+
+      /* Required layout:
+         .head spans 12
+         .nav spans 2 (left)
+         .content spans 8 (center)
+         .sidebar spans 2 (right top)
+         .ads spans 2 (right below)
+         .footer spans 12
+         Use grid-row to place sidebar above ads
+	 Can explicitly set .sidebar { grid-row: 2; } and .ads { grid-row: 3; } (or similar  depending on their header span) to ensure they stack vertically in the right-hand column
+      */
+    }
+
+
+
+
+    .head img{
+      width: 100%;
+      height: 50%;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      margin-top: 10px;
+     
+    }
+
+    .muted{ color: var(--muted); }
+
+    /* Complete nested menu grid here (mobile: 1 column) */
+    .menu-grid{
+        display:grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        /* @media(min-width: 768px){
+            .menu-grid{
+                grid-template-columns: (3,1fr);
+            }
+            
+        } */
+    }
+
+    /* Complete breakpoint for menu cards (desktop: 3 columns) */
+    @media (min-width: 900px){
+      .menu-grid{
+        grid-template-columns: repeat(3,1fr);
+
+      }
+
+
+
+    }
+
+    article{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .price{ font-weight: 900; color: var(--accent); }
+
+    .actions{
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 800;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    #calcBtn{
+      background: var(--accent);
+      color: #fff;
+      border-color: rgba(0,0,0,0.2);
+    }
+
+    pre{
+      white-space: pre-wrap;
+      background: rgba(15,23,42,0.03);
+      border: 1px dashed rgba(15,23,42,0.15);
+      padding: 12px;
+      border-radius: 12px;
+      margin: 10px 0 0 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .weather{
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.18);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="head panel">
+      <h1>Campus Café</h1>
+      <p class="muted">Quote Dashboard • Chapter 8 JavaScript + 12-column CSS Grid</p>
+
+      <!-- _blank is used for a new page, blank would target a page named blank. rel="noopener" supposedly helps against site redirection. -->
+      <img
+        src="arnold-schwarzenegger-having-coffee-v0-rjy8674iweyc1.webp"
+        alt="Arnold with a Coffee at a table"
+      />
+      <p class="muted">Banner photo: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash </a></p>
+    </header>
+
+    <nav class="nav panel">
+      <h2>Sections</h2>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#quote">Get Quote</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+
+    <main class="content panel">
+
+      <section id="menu">
+        <h2>Menu</h2>
+        <p class="muted">Display cards only. Inputs are collected using dialogs.</p>
+
+        <div class="menu-grid">
+            <article>
+                Coffee ($3.25) -Overpriced, plain coffee.
+
+            </article>
+
+            <article>
+                Sandwich ($8.50) -A plain sandwich.
+            </article>
+
+            <article>
+                 Salad ($7.25) -plain ceaser salad.
+            </article>
+<!--             
+            <article>
+                Calafornia Club ($13.50) -This calafornia club is packed with 56 grams of protein, loaded with Roasted Chicken, Bacon, Swiss, Fresh Guacamole, Lettuce, Tomato, Mayo
+
+            </article>
+            <article>
+                 Partagás Serie D No. 4.  ($45.55) One of the best Cuban cigars among this size, it is a powerful smoke with very complex flavors. Because nothing goes better with a coffee then a stogie.
+            </article>
+         -->
+
+
+        </div>
+      </section>
+
+      <section id="quote" style="margin-top:18px;">
+        <h2>Get a Quote</h2>
+        <p class="muted">Click Get Quote and enter values in dialogs.</p>
+
+        <div class="actions">
+          <button id="calcBtn" type="button">Get Quote</button>
+          <button id="resetBtn" type="button">Reset</button>
+        </div>
+    </section>
+
+        <section id="about" style="margin-top:18px;">
+            <h2>About</h2>
+            <p class="muted">We serve the best damn coffee, the highest protein clubs and the finest cigars. What more could you want. We are absolute studs here.</p>
+        <!-- dbl check with prof-->
+        
+        </section>
+
+    </main>
+
+    <aside class="sidebar panel">
+      <h3>Receipt</h3>
+      <pre id="display">No order data.</pre>
+    </aside>
+
+    <aside class="ads panel">
+      <h3>Local Weather</h3>
+
+
+
+      <div id="weatherBox" class="weather">
+        Loading weather...
+      </div>
+
+
+
+
+    </aside>
+
+    <footer class="footer panel">
+      <p>&copy; 2026 Campus Café</p>
+      <p class="muted">Weather data by Open-Meteo (CC BY 4.0).</p>
+      <p class="muted">Banner photo attribution goes here (if required).</p>
+    </footer>
+
+  </div>
+
+  <script>
+    /* =========================================================
+       JavaScript (Chapter 8)
+       Complete the marked functions and the Get Quote logic.
+       ========================================================= */
+
+    const PRICES = { coffee: 3.25, sandwich: 8.50, salad: 7.25 };
+    const TAX_RATE = 0.05;
+    const STUDENT_RATE = 0.10;
+    const ECO_FEE = 1.00;
+    const BULK_QTY = 6;
+    const BULK_OFF = 2.00;
+
+    function money(n){
+      return `$${n.toFixed(2)}`;
+    }
+
+    function normalizeType(raw){
+      if(raw ==null){
+        return "";
+
+      }
+      else{
+        return raw.trim().toLowerCase();
+      }
+
+    }
+
+    function isValidType(t){
+      return t ==="coffee" || t ==="sandwich" || t ==="salad";
+      //checks the input and if the comparison is valid then returns a true
+    }
+
+    function iconsFor(type, qty){
+      const map = { coffee: "☕", sandwich: "🥪", salad: "🥗" };
+      const icon = map[type] || "✅";
+      const cap = Math.min(qty, 10);
+      let line = "";
+      for(let i=0;i<cap;i++){
+          line += icon;
+
+      }
+
+      return line;
+    }
+
+    function processQuote(type, qty, isStudent, ecoCup){
+      const unitPrice = PRICES[type];
+      const subtotal = unitPrice * qty;
+      const studentDiscount = isStudent ? subtotal * STUDENT_RATE : 0; //the :0 is needed in case the person isn't a student
+      const ecoFee = (ecoCup && type ==="coffee") ? ECO_FEE : 0; //asks if type coffee and ecoCup is true? 
+      const bulkDiscount = qty >= BULK_QTY ? BULK_OFF : 0;
+      const taxable = subtotal -studentDiscount + ecoFee -bulkDiscount;
+      const tax = taxable * TAX_RATE;
+      const total = tax + taxable;
+
+
+      return { unitPrice, subtotal, studentDiscount, ecoFee, bulkDiscount, tax, total };
+    }
+
+    function buildReceipt(type, qty, isStudent, ecoCup, calc){
+      const icons = iconsFor(type, qty);
+      const studentText = isStudent ? "Yes" : "No";
+      const ecoText = (type === "coffee") ? (ecoCup ? "Yes" : "No") : "N/A";
+
+      return `CAMPUS CAFÉ RECEIPT
+--------------------------------
+Item:           ${type}
+Unit price:     ${money(calc.unitPrice)}
+Quantity:       ${qty}  ${icons}
+Student disc.:  ${studentText}
+Eco cup add-on: ${ecoText}
+
+Subtotal:       ${money(calc.subtotal)}
+Student -10%:   -${money(calc.studentDiscount)}
+Eco cup fee:    ${money(calc.ecoFee)}
+Bulk deal:      -${money(calc.bulkDiscount)}
+Tax (5%):       ${money(calc.tax)}
+--------------------------------
+TOTAL:          ${money(calc.total)}
+`;
+    }
+
+    function showError(msg){
+      const display = document.getElementById("display");
+      display.textContent.msg;
+      
+    }
+
+    function resetUI(){
+      const display = document.getElementById("display");
+      display.textContent = "No order data"
+    }
+
+    async function loadWeather(){
+      const box = document.getElementById("weatherBox");
+      const url =
+        "https://api.open-meteo.com/v1/forecast" +
+        "?latitude=53.5461&longitude=-113.4938" +
+        "&current=temperature_2m,wind_speed_10m" +
+        "&timezone=America/Edmonton";
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const t = data.current.temperature_2m;
+        const w = data.current.wind_speed_10m;
+        box.textContent = `Edmonton: ${t}°C • Wind ${w} km/h`;
+      } catch {
+        box.textContent = "Weather unavailable.";
+      }
+    }
+
+    function main(){
+      loadWeather();
+      resetUI();
+
+      document.getElementById("calcBtn").addEventListener("click", () => {
+        const type = normalizeType(prompt("Enter item type: coffee / sandwich / salad"));
+        const qty = Number(prompt("Enter quantity (1–10):"));
+
+        if (!isValidType(type)){
+          showError("Item must be coffee, sandwich, or salad.");
+          return;
+        }
+          if (!Number.isInteger(qty) || qty > 10 || qty < 1) {
+            showError("Quantity must be a number between 1 and 10, please try again");
+            return;
+
+          }
+
+          const isStudent = confirm("Student discount? (10% off)");
+
+        const ecoCup = (type === "coffee") ? confirm("Add reusable cup? (+$1.00)") : false;
+
+        const calc = processQuote(type, qty, isStudent, ecoCup);
+        document.getElementById("display").textContent =
+          buildReceipt(type, qty, isStudent, ecoCup, calc);
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        resetUI();
+      });
+    }
+
+    main();
+  </script>
+</body>
+</html>

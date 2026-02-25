@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzaria: Conference Reg</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main class="layout">
+    <h1>Pizzaria! Happy to see ya!</h1>
+    <h1>Run by Giovanna del monte.</h1>
+    <form action="#" method="post">
+
+
+
+<!--Personal Details section-->
+      <fieldset>
+        <legend>Personal Details</legend>
+        <div class="form-grid">
+          <label for="email">Email:</label>
+          <input type="text" id="email" required minlength="2" placeholder="Enter an email">
+
+          <label for="Phone">Phone Number: </label>
+          <input type="tel" id="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+        </div>
+      </fieldset>
+
+
+<!--Pizza order section-->
+      <fieldset>
+        <legend> Pizza Order </legend>
+         <div class="form-grid">
+          <label>Select a pizza crust:</label>
+          <!--Because the radio all share teh same name we only need 1 requried tag in all 3-->
+            <div class="radio">
+
+         
+            <input type="radio" id="ThinCrust" name="PizzaCrust" required>
+            <label for ="ThinCrust">Thin Crust</label><br>
+            <input type="radio" id="Classic" name="PizzaCrust">
+            <label for ="Classic">Classic</label><br>
+            <input type="radio" id="DeepDish" name="PizzaCrust">
+            <label for ="DeepDish">Deep Dish</label><br>
+          </div>
+        </div>
+
+
+            <p>Select toppings: (MORE THAN 2 COSTS EXTRA!!!)</p>
+            <div class="container"> 
+            <input type="checkbox" id="Pepperoni" name="Pizza Toppings">
+            <label for="Pepperoni">Perpperoni</label> 
+            <input type="checkbox" id="Onions" name="Pizza Toppings">
+            <label for="Onions">Onions</label> 
+            <input type="checkbox" id="GreenPepper" name="Pizza Toppings">
+            <label for="GreenPepper">Green Pepper</label> 
+            <input type="checkbox" id="Olives" name="Pizza Toppings">
+            <label for="Olives">Olives</label> 
+            <input type="checkbox" id="Ham" name="Pizza Toppings">
+            <label for="Ham">Ham</label> 
+            <input type="checkbox" id="Pineapple" name="Pizza Toppings">
+            <label for="Pineapple">Pineapple</label> 
+            <br>
+            <label for="Quantity">Quantity:</label>
+            <input type="number" name="Quantity" id="Quantity" min="1" max="10" placeholder="QTY"required>
+            </div>
+      </fieldset>
+
+
+<!--Delivery Instructions section-->
+      <fieldset>
+        <legend>Delivery Instructions</legend>
+        <div class="flex-row">
+          <label for="datetime-local" min="2026-01-01T00:00">Date and Time</label><br>
+          <input type="datetime-local" required> 
+          <label for="Payment">Select Payment Method</label>
+          <select name="Payment" id="Payment" required>
+            <option value="" >Please Pick one</option>
+            <option value="Debit">Debit</option>
+            <option value="Credit">Credit</option>
+            <option value="Cash">Cash</option>
+          </select>
+
+
+          
+          
+        </div>
+      </fieldset>
+      <div class="container">
+      <button type="Submit">Submit</button>
+      <button type="reset">Reset</button>
+      </div>
+    </form>
+
+<aside class="sidebar">
+    <table>
+      <caption>Your Order Sumary:</caption>
+      <thead>
+        <!--th scope is used for accessability for screen readers, and we use th in the header, td is for data in the body-->
+      <tr>
+        <th scope="col">Item </th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Base Pizza</td>
+          <td>Large(12"), Thin Crust</td>
+          <td>$16.99</td>
+        </tr>
+        <tr>
+          <td>Toppings</td>
+          <td>Mushrooms, Olives, Extra Cheese</td>
+          <td>$4.50</td>
+        </tr>
+        <tr>
+          <td>Delivery Fee</td>
+          <td>AMAZON PRIME NOW</td>
+          <td>$19.50</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td>$40.99</td>
+        </tr>
+      </tfoot>
+    </table>
+</aside>
+
+
+  </main>
+
+</body>
+
+
+</html>
